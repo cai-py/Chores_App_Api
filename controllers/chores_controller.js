@@ -19,7 +19,33 @@ chores.get('/', (req,res) => {
 })
 
 // UPDATE
+chores.put('/:id', (req,res) => {
+    Chore.findByIdAndUpdate(
+        req.params.id,
+        req.body,
+        { new: true },
+        (err, updatedChore) => {
+            if (err) {
+                res.send(err)
+            }else {
+                Chore.find({}, (err, foundChore) => {
+                    res.json(foundChore)
+                })
+            }
+        }
+    )
+})
 
 // DELETE
+chores.delete('/:id', (req,res) => {
+    Chore.findByIdAndDelete(
+        req.params.id,
+        (err, deletedChore) => {
+            Chore.find({}, (err, foundChores) => {
+                res.json(foundChores)
+            })
+        }
+    )
+})
 
 module.exports = chores
