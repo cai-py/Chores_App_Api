@@ -12,6 +12,11 @@ chores.post('/', (req,res) => {
 })
 
 // READ
+chores.get('/', (req,res) => {
+    Chore.find({}, (err, foundChores) => {
+        res.json(foundChores)
+    })
+})
 
 // UPDATE
 
