@@ -14,6 +14,7 @@ mongoose.connect(MONGODB_URI, {
     useUnifiedTopology: true,
     useFindAndModify: false
 });
+
 // ERROR / SUCCESS
 mongoose.connection.on('error', err =>
   console.log(
@@ -25,6 +26,9 @@ mongoose.connection.on('connected', () =>
   console.log('mongo connected: ', MONGODB_URI)
 );
 mongoose.connection.on('disconnected', () => console.log('mongo disconnected'));
+
+// MIDDLEWARE
+app.use(express.json()); // use .json(), not .urlencoded()
 
 // ROUTES
 const choresController = require('./controllers/chores_controller');
