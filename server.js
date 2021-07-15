@@ -29,6 +29,7 @@ mongoose.connection.on('disconnected', () => console.log('mongo disconnected'));
 
 // MIDDLEWARE
 app.use(express.json()); // use .json(), not .urlencoded()
+app.use(express.static('public'))
 
 // ROUTES
 const choresController = require('./controllers/chores_controller');
