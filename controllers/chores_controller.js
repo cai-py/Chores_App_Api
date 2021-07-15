@@ -48,4 +48,18 @@ chores.delete('/:id', (req,res) => {
     )
 })
 
+// SEED Jun27-Jul11
+    // add data
+const choreSeed = require('../models/seeds/Jun27Jul11')
+chores.get('/seed', (req,res) => {
+    Chore.insertMany(choreSeed, (err, manyChores) => {
+        res.redirect('/chores')
+    })
+})
+    // drop collection
+chores.get('/dropcollection', (req,res) => {
+    Chore.collection.drop()
+    res.redirect('/chores')
+})
+
 module.exports = chores
