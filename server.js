@@ -35,6 +35,9 @@ app.use(express.static('public'))
 const choresController = require('./controllers/chores_controller');
 app.use('/chores', choresController)
 
+const userController = require('./controllers/user_controller');
+app.use('/users', userController)
+
 // LISTENER
 app.listen(PORT, () => {
     console.log('listening on port: ', PORT);
